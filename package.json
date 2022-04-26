@@ -1,0 +1,29 @@
+{
+  "name": "swm-discord-bot",
+  "version": "1.0.0",
+  "description": "A customized bot app for Discord Server SWM",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosmoshudev/SWM-Discord-Bot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "Carlos Moshu",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/carlosmoshudev/SWM-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/carlosmoshudev/SWM-Discord-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15",
+    "puppeteer": "^13.5.1"
+  }
+}
