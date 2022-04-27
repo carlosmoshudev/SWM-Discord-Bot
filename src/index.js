@@ -56,16 +56,16 @@ function TypeRules(messageReference) {
         `**4.** No abuses de las menciones masivas como @here, @everyone o roles; ni las uses para hacer spam.`,
         `**5.** No publiques spam ni promociones en cualquier canal, ${spamChannel} es un canal dedicado a ello. Úsalo.`,
         `**6.** El orden da paz, cada canal tiene su finalidad, no escribas cualquier cosa en cualquier canal.`,
-        `**7.** Recuerda que, como en todo servidor de comunidad, tienes que seguir los **términos de servicio** (https://discord.com/tos) y las **Pautas de la comunidad de Discord** (https://discord.com/guidelines).`,
-        `**8.** Se puede hablar de cine y literatura, pero no me seas, no hagas spoilers.`,
-        `**9.** No pidas roles, puedes asignarte roles en ${roleChannel}.`
+        `**7.** Se puede hablar de cine y literatura, pero no me seas, no hagas spoilers. No es bonito.`,
+        `**8.** No pidas roles, puedes asignarte roles en ${roleChannel}. Roles de moderación serán dados a mano.`,
+        `**9.** Recuerda que, como en todo servidor de comunidad, tienes que seguir los **Términos de servicio** (https://discord.com/tos) y las **Pautas de la comunidad de Discord** (https://discord.com/guidelines).`
     ]
     const comunidadSWM = [
         `**1.** Si haces streams de SWM recuerda asignarte el rol en ${roleChannel}, puedes compartir tu twitch en ${introduceChannel}.`,
-        `**2.** Si tienes dudas relacionadas con Twitch, puedes preguntar sin problemas en ${mainChannel}.`,
+        `**2.** Si tienes dudas relacionadas con Twitch, puedes preguntarnos sin problemas en ${mainChannel}.`,
         `**3.** Puedes compartir herramientas, técnicas de estudio, webs y salitas de Forest o similar.`,
-        `**4.** Puedes realizar todas las sugerencias que quieras para personalizar el servidor.`,
-        `**5.** Podemos configurar alertas para tus streams, siempre que sea SWM.`,
+        `**4.** Puedes realizar todas las sugerencias que quieras para personalizar al máximo el servidor.`,
+        `**5.** Podemos configurar alertas para tus streams, siempre que sean tipo Study With Me. O similar.`,
         `**6.** Puedes sugerir juegos para Twitch, avisar cuando vas a jugar y compartir clips de juegos.`
     ]
     messageReference.channel.send(
@@ -83,6 +83,10 @@ function TypeRules(messageReference) {
     messageReference.channel.send(
         "```yaml\n 📘 Invitación al servidor \n```"
     );
+    messageReference.channel.send(BasicEmbedMessage(
+        `Puedes invitar a otros streamers o usuarios a este servidor desde el enlace: https://discord.gg/cganDFVweP y @MoshuBot y @SWM-Automatizador podremos emular una épica emoción de alegría.`
+        , thirdColor
+    ));
 }
 
 
