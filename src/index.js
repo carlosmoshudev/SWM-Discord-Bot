@@ -9,6 +9,10 @@ const chSpam        = process.env.CHANNEL_SPAM_ID;
 const chMain        = process.env.CHANNEL_MAIN_ID;
 const chRole        = process.env.CHANNEL_AUTOROLE_ID;
 
+const ownerUser     = process.env.OWNER_USER_ID;
+
+const cmdStartsWith = '!';
+
 const client = new Discord.Client();
 
 function Sleep(milliseconds) {
@@ -49,6 +53,7 @@ function TypeRules(messageReference) {
     const firstColor    = '#FF0000';
     const secondColor   = '#C48B10';
     const thirdColor    = '#099CB0';
+
     const normas = [
         `**1.** Se amable con los demás. Se puede debatir de cualquier tipo de tema, incluso off-topic, sin necesidad de atacar u ofender a nadie.`,
         `**2.** Evita temas conflictivos o delicados, estamos abiertos a todo tipo de temáticas e ideas y respetamos a las personas.`,
@@ -68,21 +73,27 @@ function TypeRules(messageReference) {
         `**5.** Podemos configurar alertas para tus streams, siempre que sean tipo Study With Me. O similar.`,
         `**6.** Puedes sugerir juegos para Twitch, avisar cuando vas a jugar y compartir clips de juegos.`
     ]
+
     messageReference.channel.send(
         "```prolog\n 📕 Normas \n```"
     );
+
     normas.forEach( x => {
         messageReference.channel.send(BasicEmbedMessage(x, firstColor));
     })
+
     messageReference.channel.send(
         "```fix\n 📙 Comunidad SWM \n```"
     );
+
     comunidadSWM.forEach( x => {
         messageReference.channel.send(BasicEmbedMessage(x, secondColor));
     })
+
     messageReference.channel.send(
         "```yaml\n 📘 Invitación al servidor \n```"
     );
+
     messageReference.channel.send(BasicEmbedMessage(
         `Puedes invitar a otros streamers o usuarios a este servidor desde el enlace: https://discord.gg/cganDFVweP y @MoshuBot y @SWM-Automatizador podremos emular una épica emoción de alegría.`
         , thirdColor
@@ -90,20 +101,23 @@ function TypeRules(messageReference) {
 }
 
 
-
-
-
 client.on('ready', () => {
     console.log('I am ready!');
     client.user.setActivity('estudiando contigo');
 })
+
 client.on('message', async message => {
-    console.log('Message received from ' + message.author.username);
-    if(message.content === '!write-rules'){
+    if (!message.content.startsWith(cmdStartsWith)) return;
+    console.log('Command received from ' + message.author.username);
+    const isOwner = message.author.id === ownerUser;
+    const args = message.content.slice(1).split(' ');
+    const cmd = args.shift().toLowerCase();
+    if(isOwner && cmd === 'write-rules'){
         message.channel.send('-Escribiendo reglas-');
         TypeRules(message);
     }
 })
+
 client.on('guildMemberAdd', member => {
     console.log('Member joined: ' + member.user.username);
 })
