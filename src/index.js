@@ -110,6 +110,19 @@ client.on('message', message => {
         message.channel.send('-Escribiendo reglas-');
         TypeRules(message);
     }
+    if(isOwner && cmd === 'reaction-role') {
+        const roleColor = '#099CB0';
+        const embAutoRoleMessage = new Discord.MessageEmbed()
+            .setTitle('Selecciona tu rol reaccionando')
+            .setColor(roleColor)
+            .setDescription(`Para seleccionar tu rol, reacciona con el emoji correspondiente.
+:emoji1: - Descripcion1
+:emoji2: - Descripcion2
+:emoji3: - Descripcion3
+:emoji4: - Descripcion4
+`)
+        message.channel.send(embAutoRoleMessage);
+    }
 })
 
 client.on('guildMemberAdd', member => {
@@ -145,3 +158,19 @@ Te invitamos a que selecciones tu perfil en ${roleChannel}. Y si haces streams, 
 })
 
 client.login(oauth);
+
+//send message to a channel each hour with random text
+setInterval(() => {
+    const randomText = [
+        'Hola gentecilla, ¿qué tal? Hoy es un gran día para estudiar.',
+        'Buenas buenas! Hoy amanecimos con ganas.',
+        'Si quereis estudiar, podéis acompañar en Twitch. Revisad los avisos de directo y encontraréis gente genial.',
+        'Un nuevo día! Os apetece jugar a algo en los descansos?',
+        '¿Me recomendáis algún juego para usar en los streams?'
+    ];
+    const randomChannel = client.channels.cache.find(
+        channel => channel.id === chMain
+    );
+    const randomMessage = randomText[Math.floor(Math.random() * randomText.length)];
+    randomChannel.send(randomMessage);
+}, 86400000);
