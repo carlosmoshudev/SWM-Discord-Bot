@@ -32,12 +32,6 @@ function BasicEmbedMessage(text, color) {
 }
 
 function TypeRules(messageReference) {
-    const welcomeChannel = messageReference.guild.channels.cache.find(
-        channel => channel.id === chWelcome
-    );
-    const rulesChannel = messageReference.guild.channels.cache.find(
-        channel => channel.id === chRules
-    );
     const introduceChannel = messageReference.guild.channels.cache.find(
         channel => channel.id === chIntroduce
     );
@@ -120,6 +114,30 @@ client.on('message', async message => {
 
 client.on('guildMemberAdd', member => {
     console.log('Member joined: ' + member.user.username);
+    const welcomeChannel = member.guild.channels.cache.find(
+        channel => channel.id === chWelcome
+    );
+    const rulesChannel = member.guild.channels.cache.find(
+        channel => channel.id === chRules
+    );
+    const introduceChannel = messageReference.guild.channels.cache.find(
+        channel => channel.id === chIntroduce
+    );
+    const spamChannel = messageReference.guild.channels.cache.find(
+        channel => channel.id === chSpam
+    );
+    const mainChannel = messageReference.guild.channels.cache.find(
+        channel => channel.id === chMain
+    );
+    const embedWelcome = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle(`Demos la bienvenida a la comunidad SWM a ${member.user.username} :tada:`);
+    welcomeChannel.send(embedWelcome);
+    Sleep(1200); // Waiting for ProBot to send the message
+    welcomeChannel.send(`Es un placer que te unas a nosotros ${member} :heart:!
+Puedes contarnos sobre ti en ${introduceChannel}
+Gracias por acompañarnos en esta comunidad. Por favor, respeta las reglas de ${rulesChannel} y diviértete.
+Te invitamos a que selecciones tu perfil en ${roleChannel}. Y si haces streams, puedes compartir tu twitch para poder estudiar contigo.`)
 })
 
 client.login(oauth);
