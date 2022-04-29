@@ -10,6 +10,7 @@ const chMain        = process.env.CHANNEL_MAIN_ID;
 const chRole        = process.env.CHANNEL_AUTOROLE_ID;
 
 const ownerUser     = process.env.OWNER_USER_ID;
+const joinLink      = process.env.JOIN_LINK;
 
 const cmdStartsWith = '!';
 
@@ -89,7 +90,7 @@ function TypeRules(messageReference) {
     );
 
     messageReference.channel.send(BasicEmbedMessage(
-        `Puedes invitar a otros streamers o usuarios a este servidor desde el enlace: https://discord.gg/cganDFVweP y @MoshuBot y @SWM-Automatizador podremos emular una épica emoción de alegría.`
+        `Puedes invitar a otros streamers o usuarios a este servidor desde el enlace: ${joinLink} y @MoshuBot y @SWM-Automatizador podremos emular una épica emoción de alegría.`
         , thirdColor
     ));
 }
