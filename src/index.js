@@ -113,7 +113,7 @@ client.on('message', message => {
     if(isOwner && cmd === 'reaction-role') {
         const roleColor = '#099CB0';
         const embAutoRoleMessage = new Discord.MessageEmbed()
-            .setTitle('Selecciona tu rol reaccionando')
+            .setTitle('¡Selecciona tu rol!')
             .setColor(roleColor)
             .setDescription(`Para seleccionar tu rol, reacciona con el emoji correspondiente.
 :emoji1: - Descripcion1
@@ -122,6 +122,11 @@ client.on('message', message => {
 :emoji4: - Descripcion4
 `)
         message.channel.send(embAutoRoleMessage);
+    }
+    //commando para borrar todos los mensajes de un canal
+    if(isOwner && cmd === 'clear-channel-notreadyyet') {
+        const channel = message.channel;
+        channel.bulkDelete(100);
     }
 })
 
@@ -159,7 +164,6 @@ Te invitamos a que selecciones tu perfil en ${roleChannel}. Y si haces streams, 
 
 client.login(oauth);
 
-//send message to a channel each hour with random text
 setInterval(() => {
     const randomText = [
         'Hola gentecilla, ¿qué tal? Hoy es un gran día para estudiar.',
