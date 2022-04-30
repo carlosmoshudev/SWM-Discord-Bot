@@ -148,7 +148,10 @@ client.on('message', message => {
     if(isOwner && cmd === 'reaction-role') {
         TypeReactionRolesMessages(message);
     }
-    //commando para borrar todos los mensajes de un canal
+    if(isOwner && cmd === 'advice-streams') {
+        message.channel.send('Aquí no se acumulan las notificaciones, lo que significa que si ves que un canal está en directo es que lo está en este momento, cuando se termina el directo desaparece la notificación.');
+    }
+        //commando para borrar todos los mensajes de un canal
     if(isOwner && cmd === 'clear-channel-notreadyyet') {
         const channel = message.channel;
         channel.bulkDelete(100);
