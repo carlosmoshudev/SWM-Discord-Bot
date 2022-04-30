@@ -119,7 +119,7 @@ function TypeReactionRolesMessages(messageReference) {
 
 :martial_arts_uniform: - Deportes
 
-:clapper: - Audiovisual
+:clapper: - Audiovisuales
 
 :art: - Bellas artes
 
