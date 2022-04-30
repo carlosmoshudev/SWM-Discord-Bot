@@ -94,6 +94,40 @@ function TypeRules(messageReference) {
         , thirdColor
     ));
 }
+function TypeReactionRolesMessages(messageReference) {
+    const roleColor = '#099CB0';
+    const embAutoRoleMessage = new Discord.MessageEmbed()
+        .setTitle('¡Selecciona tu rol!')
+        .setColor(roleColor)
+        .setDescription(`Para seleccionar tu rol, reacciona con el emoji correspondiente.
+
+:hospital: - Medicina
+
+:triangular_ruler:  - Arquitectura
+
+:briefcase: - Administración
+
+:euro: - Finanzas
+
+:salad: - Chef
+
+:computer: - Informática
+
+:service_dog: - Veterinaria
+
+:woman_scientist: - Biología
+
+:martial_arts_uniform: - Deportes
+
+:clapper: - Audiovisual
+
+:art: - Bellas artes
+
+:detective: - Ciberseguridad
+
+:alembic: - Química`);
+    messageReference.channel.send(embAutoRoleMessage);
+}
 
 
 client.on('ready', () => {
@@ -112,17 +146,7 @@ client.on('message', message => {
         TypeRules(message);
     }
     if(isOwner && cmd === 'reaction-role') {
-        const roleColor = '#099CB0';
-        const embAutoRoleMessage = new Discord.MessageEmbed()
-            .setTitle('¡Selecciona tu rol!')
-            .setColor(roleColor)
-            .setDescription(`Para seleccionar tu rol, reacciona con el emoji correspondiente.
-:emoji1: - Descripcion1
-:emoji2: - Descripcion2
-:emoji3: - Descripcion3
-:emoji4: - Descripcion4
-`)
-        message.channel.send(embAutoRoleMessage);
+        TypeReactionRolesMessages(message);
     }
     //commando para borrar todos los mensajes de un canal
     if(isOwner && cmd === 'clear-channel-notreadyyet') {
@@ -179,3 +203,4 @@ setInterval(() => {
     const randomMessage = randomText[Math.floor(Math.random() * randomText.length)];
     randomChannel.send(randomMessage);
 }, 86400000);
+
