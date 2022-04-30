@@ -189,6 +189,12 @@ client.on('message', message => {
         );
         introduceChannel.send(args.join(" "));
     }
+    if(isOwner && cmd === 'send-to-clips') {
+        const clipsChannel = message.guild.channels.cache.find(
+            channel => channel.id === 968548031219765378
+        );
+        clipsChannel.send(args.join(" "));
+    }
 })
 
 client.on('guildMemberAdd', member => {
@@ -215,6 +221,12 @@ client.on('guildMemberAdd', member => {
         .setColor('#0099ff')
         .setTitle(`Demos la bienvenida a la comunidad SWM a ${member.user.username} :tada:`);
     welcomeChannel.send(embedWelcome);
+    
+    const role = member.guild.roles.cache.find(
+        role => role.id === '968657052543094805'
+    );
+    member.roles.add(role);
+
     Sleep(3000); // Waiting for ProBot to send the message
     welcomeChannel.send(`Es un placer que te unas a nosotros ${member} :heart:!
 Puedes contarnos sobre ti en ${introduceChannel}
