@@ -31,7 +31,19 @@ function BasicEmbedMessage(text, color) {
         }
     };
 }
-
+function UserAskEmbed(text, title, color, user) {
+    return {
+        embed: {
+            color: color,
+            title: title,
+            description: text,
+            author: user,
+            footer: {
+                text: `Solicitado por ${user}`
+            }
+        }
+    };
+}
 function TypeRules(messageReference) {
     const introduceChannel = messageReference.guild.channels.cache.find(
         channel => channel.id === chIntroduce
@@ -152,9 +164,24 @@ client.on('message', message => {
         message.channel.send('Aquí no se acumulan las notificaciones, lo que significa que si ves que un canal está en directo es que lo está en este momento, cuando se termina el directo desaparece la notificación.');
     }
         //commando para borrar todos los mensajes de un canal
-    if(isOwner && cmd === 'clear-channel-notreadyyet') {
+    if(isOwner && cmd === 'clear-channel') {
         const channel = message.channel;
         channel.bulkDelete(100);
+    }
+    if(cmd === 'embed-this') {//TODO: Mejorar args
+        message.channel.send(UserAskEmbed(args.join(" "), "Mensaje Embebido", "#000000", message.author.username))
+    }
+    if(isOwner && cmd === 'send-to-main') {
+        const mainChannel = message.guild.channels.cache.find(
+            channel => channel.id === chMain
+        );
+        mainChannel.send(args.join(" "));
+    }
+    if(isOwner && cmd === 'send-to-twitch-games') {
+        const twitchGamesChannel = message.guild.channels.cache.find(
+            channel => channel.id === '968918733181571082'
+        );
+        twitchGamesChannel.send(args.join(" "));
     }
 })
 
