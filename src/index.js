@@ -183,6 +183,12 @@ client.on('message', message => {
         );
         twitchGamesChannel.send(args.join(" "));
     }
+    if(isOwner && cmd === 'send-to-introduce') {
+        const introduceChannel = message.guild.channels.cache.find(
+            channel => channel.id === chIntroduce
+        );
+        introduceChannel.send(args.join(" "));
+    }
 })
 
 client.on('guildMemberAdd', member => {
